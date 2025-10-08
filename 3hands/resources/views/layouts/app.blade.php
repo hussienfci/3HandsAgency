@@ -4,9 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title', 'Laravel App')</title>
-    
-    <!-- Use CDN for immediate functionality -->
+    <title>@yield('title', 'Laravel App')</title>    <!-- Use CDN for immediate functionality -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -40,7 +38,7 @@
                             3Hands
                         </a>
                     </div>
-                    <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                    <div class="flex md:flex ml-6 xs:ml-0.5 md:space-x-8 xs:space-x-0">
                         <a href="{{ route('home') }}" class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}">
                             Home
                         </a>
@@ -50,7 +48,7 @@
                     </div>
                 </div>
 
-                <div class="flex items-center space-x-4">
+                <div class="flex items-center space-x-2">
                     <select id="language-select" class="text-sm bg-transparent border-none text-gray-700 dark:text-gray-300 focus:outline-none focus:ring-0 cursor-pointer">
                         <option value="en">English</option>
                         <option value="es">Español</option>
@@ -70,17 +68,7 @@
         </div>
     </nav>
 
-    <!-- Mobile menu -->
-    <div class="sm:hidden bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 p-2">
-        <div class="space-y-1">
-            <a href="{{ route('home') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700">
-                Home
-            </a>
-            <a href="{{ route('users.index') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700">
-                Users
-            </a>
-        </div>
-    </div>
+    
 
     <!-- Main Content -->
     <main class="flex-1">
@@ -177,5 +165,11 @@
         window.showToast = showToast;
         window.hideToast = hideToast;
     </script>
+ <!-- class="text-lg">&times;</button> -->
+        </div>
+    </div>
+
+    <!-- Include the JavaScript file directly -->
+    <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

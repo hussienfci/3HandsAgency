@@ -146,6 +146,8 @@
 
     // Render users in both desktop table and mobile cards
     function renderUsers(users) {
+        console.log(users);
+        
         const mobileMediaQuery = window.matchMedia('(max-width: 767px)');
         const tableHeader = document.querySelector('thead') ; 
         const desktopTable = document.querySelector('.desktop') 
@@ -173,6 +175,8 @@
                 console.log('Changed to desktop view');
                 // Execute desktop-specific functions       
                 tableHeader.classList.remove('hidden');
+                // desktopTable.classList.remove('hidden');
+                
                 renderDesktopTable(users);
                 
             }

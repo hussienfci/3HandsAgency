@@ -509,7 +509,6 @@ document.addEventListener('DOMContentLoaded', function() {
         initUserPage();
     }
 });
-
 function initUserPage() {
     console.log('Initializing users page functionality');
     
@@ -518,24 +517,55 @@ function initUserPage() {
     initFormHandlers();
     initModalHandlers();
     
+    // Remove existing event listener to prevent duplicates
+    document.removeEventListener('keydown', handleKeyboardShortcuts);
+    
     // Add keyboard shortcuts
-    document.addEventListener('keydown', function(e) {
-        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.isContentEditable) return;
-        
-        if (e.altKey) {
-            switch(e.key.toLowerCase()) {
-                case 'n':
-                    e.preventDefault();
-                    handleAddUser();
-                    break;
-                case 'escape':
-                    e.preventDefault();
-                    closeModal();
-                    hideToast();
-                    break;
-            }
+    document.addEventListener('keydown', handleKeyboardShortcuts);
+}
+
+function handleKeyboardShortcuts(e) {
+    // Don't trigger when user is typing in inputs
+    if (e.target.tagName === 'INPUT' || 
+        e.target.tagName === 'TEXTAREA' || 
+        e.target.isContentEditable) {
+        return;
+    }
+    
+    
+    console.log('=== KEYBOARD DEBUG ===');
+    console.log('Key:', e.key);
+    console.log('Code:', e.code);
+    console.log('Alt:', e.altKey, 'Ctrl:', e.ctrlKey, 'Shift:', e.shiftKey);
+    console.log('Target:', e.target);
+    console.log('Target tag:', e.target.tagName);
+    console.log('=====================');
+    console.log('Key pressed:', e.key, 'Alt key:', e.altKey, 'Ctrl key:', e.ctrlKey);
+    
+    // Use Ctrl instead of Alt to avoid browser conflicts
+    if (e.altKey) {
+        switch(e.key.toLowerCase()) {
+            case 'n':
+                e.preventDefault();
+                console.log('alt+N pressed - adding user');
+                handleAddUser();
+                break;
+            case 'escape':
+                e.preventDefault();
+                console.log('alt+Escape pressed - closing modal');
+                closeModal();
+                hideToast();
+                break;
         }
-    });
+    }
+    
+    // Or use standalone Escape key (without modifier)
+    if (e.key === 'Escape') {
+        e.preventDefault();
+        console.log('Escape pressed - closing modal');
+        closeModal();
+        hideToast();
+    }
 }
 
 // ===== EXPOSE FUNCTIONS TO GLOBAL SCOPE =====

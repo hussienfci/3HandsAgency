@@ -133,6 +133,33 @@
                 icons[1].classList.toggle('hidden', !isDark);
             }
         }
+         function handleKeyboardShortcuts(e) {
+            // Don't trigger when user is typing in inputs
+            if (e.target.tagName === 'INPUT' || 
+                e.target.tagName === 'TEXTAREA' || 
+                e.target.isContentEditable) {
+                return;
+            }
+            
+            console.log('Key pressed:', e.key, 'Alt:', e.altKey, 'Ctrl:', e.ctrlKey);
+            
+            // Escape key (without any modifiers)
+            if (e.key === 'Escape') {
+                e.preventDefault();
+                console.log('Escape pressed - closing modal and toast');
+                if (typeof closeModal === 'function') closeModal();
+                hideToast();
+                return;
+            }
+            
+            // Alt+N for new user
+            if (e.altKey && e.key.toLowerCase() === 'n') {
+                e.preventDefault();
+                console.log('Alt+N pressed - adding user');
+                if (typeof handleAddUser === 'function') handleAddUser();
+                return;
+            }
+        }
 
         // Initialize theme
         document.addEventListener('DOMContentLoaded', function() {
@@ -158,6 +185,8 @@
                     showToast(`Language changed to ${this.options[this.selectedIndex].text}`, 'info');
                 });
             }
+            
+            document.addEventListener('keydown', handleKeyboardShortcuts);
         });
 
         // Make functions global

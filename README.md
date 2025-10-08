@@ -59,3 +59,29 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+# Keyboard Shortcuts
+
+## Users Page Shortcuts
+
+### Add New User
+- **Shortcut**: `Alt + N`
+- **Action**: Opens the "Add New User" modal
+- **Usage**: 
+  1. Navigate to the Users page
+  2. Make sure you're not focused on any input field
+  3. Press `Alt + N` to quickly open the user creation form
+
+### Close Modal/Toast
+- **Shortcut**: `Escape`
+- **Action**: Closes any open modal or toast notification
+- **Usage**: Press `Escape` key to dismiss modals and notifications
+
+## Tips
+- These shortcuts only work when you're not typing in input fields
+- The shortcuts are available throughout the Users page interface
+- Use `Alt + N` to quickly add multiple users without reaching for your mouse
+
+---
+
+*For the best experience, ensure your keyboard is functioning properly and you're using a supported browser.*
